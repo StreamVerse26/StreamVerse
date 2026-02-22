@@ -1,13 +1,15 @@
+
+
 <!DOCTYPE html>
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Verse</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
+
+/* BASIC */
 
 body{
 margin:0;
@@ -25,19 +27,27 @@ background:radial-gradient(circle,#1b0d2e,#0b0b15);
 position:relative;
 }
 
+/* LOGO */
+
 .logo{
 width:120px;
+height:auto;
+border-radius:12px;
 position:absolute;
 left:40px;
 top:50%;
 transform:translateY(-50%);
-border-radius:12px;
 }
+
+/* TITLE GLOW */
 
 .titleGlow{
 font-size:4rem;
+text-align:center;
 margin:0;
 text-shadow:0 0 30px rgba(255,0,150,.6);
+position:relative;
+display:inline-block;
 }
 
 /* MEMBERS */
@@ -55,27 +65,46 @@ padding:20px;
 background:linear-gradient(145deg,#1a1a2f,#121221);
 padding:30px;
 border-radius:25px;
-transition:0.3s;
+transition:0.4s;
 position:relative;
+overflow:hidden;
+}
+
+.card{
+background:linear-gradient(145deg,#1a1a2f,#121221);
+padding:30px;
+border-radius:25px;
+transition:0.3s ease;
+position:relative;
+overflow:hidden;
 text-decoration:none;
 color:white;
-display:block;
 cursor:pointer;
+display:block;
+}
+
+.card.live{
+box-shadow:
+0 0 40px rgba(40,199,111,.4),
+0 0 80px rgba(40,199,111,.2);
+border:1px solid rgba(40,199,111,.6);
 }
 
 .card:hover{
 transform:translateY(-10px) scale(1.02);
-box-shadow:0 0 60px rgba(255,0,150,.25);
+box-shadow:
+0 0 50px rgba(255,0,150,.25),
+0 0 100px rgba(255,0,150,.1);
 }
 
-.card.live{
-order:-1;
-box-shadow:0 0 60px rgba(40,199,111,.4);
+.card:hover::before{
+opacity:1;
+animation:shine 3s linear infinite;
 }
 
-.card.offline{
-opacity:0.6;
-filter:grayscale(40%);
+@keyframes shine{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
 .card img{
@@ -83,6 +112,12 @@ width:110px;
 height:110px;
 border-radius:50%;
 border:3px solid #ff4040;
+box-shadow:0 0 40px rgba(255,0,150,.4);
+transition:0.3s;
+}
+
+.card:hover img{
+transform:scale(1.08);
 }
 
 .badge{
@@ -95,14 +130,10 @@ border-radius:20px;
 font-size:12px;
 }
 
-.viewerCount{
-position:absolute;
-bottom:15px;
-right:15px;
-background:#ff4040;
-padding:6px 12px;
-border-radius:15px;
-font-size:14px;
+@keyframes pulse{
+0%{transform:scale(1); opacity:1;}
+50%{transform:scale(1.08); opacity:.8;}
+100%{transform:scale(1); opacity:1;}
 }
 
 iframe{
@@ -115,13 +146,14 @@ margin-top:40px;
 
 </style>
 </head>
-
 <body>
 
 <header>
+
 <img src="SVLogo.png" class="logo">
 <h1 class="titleGlow">StreamVerse</h1>
 <div id="liveStatus"></div>
+
 </header>
 
 <div id="streamBox"></div>
@@ -129,14 +161,19 @@ margin-top:40px;
 
 <script>
 
-const CLIENT_ID = "LISÄÄ_TÄNNE";
-const CLIENT_SECRET = "LISÄÄ_TÄNNE";
+/* ================= MUOKKAA TÄMÄ ================= */
 
+const CLIENT_ID = "zty6qtjqzi0cl7m6yoxordesatqklv";
+const CLIENT_SECRET = "hmevf40u4gqhb6xomz1sh6genw1vsf";
+
+/* Kirjoita VAIN twitch käyttäjänimet */
 const channels = [
 "G3splitter",
 "Koeda666",
 "lydiaviolet"
 ];
+
+/* =============================================== */
 
 async function getToken(){
 const res = await fetch("https://id.twitch.tv/oauth2/token",{
@@ -157,11 +194,9 @@ const token = await getToken();
 
 let liveList = [];
 
-const members = document.getElementById("members");
-members.innerHTML="";
-
 for(const channel of channels){
 
+/* Hae user info (nimi + kuva) */
 const userRes = await fetch(
 "https://api.twitch.tv/helix/users?login="+channel,
 {
@@ -176,6 +211,7 @@ if(!userData.data.length) continue;
 
 const user = userData.data[0];
 
+/* Luo kortti */
 const card = document.createElement("a");
 card.className="card";
 card.href="https://twitch.tv/"+channel;
@@ -187,11 +223,9 @@ card.innerHTML=`
 <div class="badge" id="${channel}-badge">OFFLINE</div>
 <div class="viewerCount" id="${channel}-viewers"></div>
 `;
+document.getElementById("members").appendChild(card);
 
-members.appendChild(card);
-
-/* LIVE CHECK */
-
+/* Tarkista live */
 const liveRes = await fetch(
 "https://api.twitch.tv/helix/streams?user_login="+channel,
 {
@@ -200,7 +234,6 @@ headers:{
 "Authorization":"Bearer "+token
 }
 });
-
 const liveData = await liveRes.json();
 
 if(liveData.data.length>0){
@@ -210,24 +243,25 @@ const viewers = liveData.data[0].viewer_count;
 const badge = document.getElementById(channel+"-badge");
 badge.innerText="🔴 LIVE";
 badge.style.background="#28c76f";
+badge.style.boxShadow="0 0 20px rgba(40,199,111,.5)";
 
 document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 
 card.classList.add("live");
 
 liveList.push(channel);
+document.getElementById(channel+"-badge").innerText="🔴 LIVE";
+liveList.push(channel);
 
-}else{
-card.classList.add("offline");
-}
-
-if(!document.getElementById("streamBox").innerHTML && liveData.data.length>0){
+/* Näytä ensimmäinen live stream */
+if(!document.getElementById("streamBox").innerHTML){
 document.getElementById("streamBox").innerHTML=
 `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=StreamVerse26.github.io&autoplay=true&muted=true"></iframe>`;
 }
-
+}
 }
 
+/* Live status teksti */
 document.getElementById("liveStatus").innerText=
 liveList.length>0 ?
 "🔴 Live: "+liveList.join(", ")
@@ -237,9 +271,28 @@ liveList.length>0 ?
 }
 
 loadData();
-setInterval(loadData,60000);
+setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60000);
 
 </script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
