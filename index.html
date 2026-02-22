@@ -6,35 +6,94 @@
 <title>Stream Verse</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Inter,sans-serif;background:#0b0b15;color:white;text-align:center}
-header{padding:80px 20px;background:radial-gradient(circle,#1b0d2e,#0b0b15)}
-h1{font-size:4rem;margin:0}
-.members{max-width:1200px;margin:60px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:20px}
-.card{background:#151525;padding:30px;border-radius:20px;transition:.3s;position:relative}
-.card:hover{transform:translateY(-10px);box-shadow:0 0 40px rgba(255,0,100,.2)}
-.card img{width:110px;height:110px;border-radius:50%;border:3px solid #ff4040}
-.badge{position:absolute;top:15px;right:15px;background:#ff4040;padding:6px 14px;border-radius:20px;font-size:12px}
-iframe{width:100%;height:600px;border:none;border-radius:20px;margin-top:40px}
-.logo{
-width:180px;
-border-radius:25px;
-box-shadow:0 0 50px rgba(255,0,150,.4);
-animation: float 6s ease-in-out infinite;
-margin-bottom:20px;
+body{
+margin:0;
+font-family:Inter,sans-serif;
+background:#0b0b15;
+color:white;
+text-align:center;
 }
 
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-15px);}
-100%{transform:translateY(0px);}
+header{
+padding:40px 60px;
+background:radial-gradient(circle,#1b0d2e,#0b0b15);
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+h1{
+font-size:3rem;
+margin:0;
+}
+
+.members{
+max-width:1200px;
+margin:60px auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+padding:20px;
+}
+
+.card{
+background:#151525;
+padding:30px;
+border-radius:20px;
+transition:.3s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 40px rgba(255,0,100,.2);
+}
+
+.card img{
+width:110px;
+height:110px;
+border-radius:50%;
+border:3px solid #ff4040;
+}
+
+.badge{
+position:absolute;
+top:15px;
+right:15px;
+background:#ff4040;
+padding:6px 14px;
+border-radius:20px;
+font-size:12px;
+}
+
+iframe{
+width:100%;
+height:600px;
+border:none;
+border-radius:20px;
+margin-top:40px;
+}
+
+.logo{
+width:120px;
+border-radius:15px;
 }
 </style>
 </head>
 <body>
 
-<header style="text-align:center; padding:60px 20px;">
+<header>
 
+<div class="header-left">
 <img src="SVLogo.png" class="logo">
+<h1>StreamVerse</h1>
+</div>
 
 <div id="liveStatus">Checking live...</div>
 
