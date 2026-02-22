@@ -106,7 +106,7 @@ liveList.push(channel);
 /* Näytä ensimmäinen live stream */
 if(!document.getElementById("streamBox").innerHTML){
 document.getElementById("streamBox").innerHTML=
-`<iframe src="https://player.twitch.tv/?channel=${channel}&parent=StreamVerse26.github.io&autoplay=true"></iframe>`;
+`<iframe src="https://player.twitch.tv/?channel=${channel}&parent=StreamVerse26.github.io&autoplay=true&muted=true"></iframe>`;
 }
 }
 }
@@ -126,3 +126,4 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
