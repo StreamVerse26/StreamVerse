@@ -83,11 +83,26 @@ cursor:pointer;
 display:block;
 }
 
+.viewerCount{
+position:absolute;
+bottom:15px;
+right:15px;
+background:#ff4040;
+padding:6px 12px;
+border-radius:15px;
+font-size:14px;
+}
+
+.card.offline{
+opacity:0.6;
+filter:grayscale(40%);
+}
+
 .card.live{
+order:-1;
 box-shadow:
-0 0 40px rgba(40,199,111,.4),
-0 0 80px rgba(40,199,111,.2);
-border:1px solid rgba(40,199,111,.6);
+0 0 60px rgba(40,199,111,.3),
+0 0 120px rgba(40,199,111,.15);
 }
 
 .card:hover{
@@ -144,6 +159,8 @@ border-radius:20px;
 margin-top:40px;
 }
 
+
+  
 </style>
 </head>
 <body>
@@ -243,15 +260,19 @@ const viewers = liveData.data[0].viewer_count;
 const badge = document.getElementById(channel+"-badge");
 badge.innerText="🔴 LIVE";
 badge.style.background="#28c76f";
-badge.style.boxShadow="0 0 20px rgba(40,199,111,.5)";
 
 document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 
 card.classList.add("live");
 
 liveList.push(channel);
-document.getElementById(channel+"-badge").innerText="🔴 LIVE";
-liveList.push(channel);
+
+}else{
+
+card.classList.add("offline");
+
+}
+  
 
 /* Näytä ensimmäinen live stream */
 if(!document.getElementById("streamBox").innerHTML){
@@ -276,6 +297,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
