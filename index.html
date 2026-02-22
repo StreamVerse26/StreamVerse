@@ -4,229 +4,125 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Community</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
-
-body{
-margin:0;
-font-family:Space Grotesk,sans-serif;
-background:#050510;
-color:white;
-text-align:center;
-}
-
-/* HERO */
-
-.hero{
-padding:90px 20px;
-background:radial-gradient(circle at center,#1a0a30,#050510);
-}
-
-.hero h1{
-font-size:4.5rem;
-margin:0;
-background:linear-gradient(90deg,#ff4040,#7a5cff,#ff4040);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-#liveStatus{
-margin-top:15px;
-font-weight:600;
-color:#ff4040;
-}
-
-/* MEMBERS */
-
-.members{
-max-width:1200px;
-margin:70px auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:30px;
-padding:20px;
-}
-
-.card{
-background:rgba(255,255,255,0.03);
-backdrop-filter:blur(18px);
-padding:30px;
-border-radius:28px;
-transition:.4s;
-position:relative;
-}
-
-.card:hover{
-transform:translateY(-12px);
-box-shadow:0 0 60px rgba(255,64,64,.2);
-}
-
-.card img{
-width:110px;
-height:110px;
-border-radius:50%;
-border:3px solid #ff4040;
-}
-
-/* BADGE */
-
-.badge{
-position:absolute;
-top:18px;
-right:18px;
-background:#ff4040;
-padding:6px 14px;
-border-radius:20px;
-font-size:12px;
-}
-
-/* STREAM PLAYER */
-
-.streamBox{
-max-width:1200px;
-margin:50px auto;
-padding:20px;
-}
-
-iframe{
-width:100%;
-height:620px;
-border:none;
-border-radius:28px;
-box-shadow:0 0 90px rgba(255,64,64,.25);
-}
-
+body{margin:0;font-family:Inter,sans-serif;background:#0b0b15;color:white;text-align:center}
+header{padding:80px 20px;background:radial-gradient(circle,#1b0d2e,#0b0b15)}
+h1{font-size:4rem;margin:0}
+.members{max-width:1200px;margin:60px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:20px}
+.card{background:#151525;padding:30px;border-radius:20px;transition:.3s;position:relative}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 40px rgba(255,0,100,.2)}
+.card img{width:110px;height:110px;border-radius:50%;border:3px solid #ff4040}
+.badge{position:absolute;top:15px;right:15px;background:#ff4040;padding:6px 14px;border-radius:20px;font-size:12px}
+iframe{width:100%;height:600px;border:none;border-radius:20px;margin-top:40px}
 </style>
 </head>
-
 <body>
 
-<div class="hero">
+<header>
 <h1>Stream Community</h1>
-<p>Creators supporting creators</p>
 <div id="liveStatus">Checking live...</div>
-</div>
+</header>
 
-<div class="streamBox" id="streamBox"></div>
-
+<div id="streamBox"></div>
 <div class="members" id="members"></div>
 
 <script>
 
-/* TEAM CONFIG */
+/* ================= MUOKKAA TÄMÄ ================= */
 
-const teamMembers=[
+const CLIENT_ID = "zty6qtjqzi0cl7m6yoxordesatqklv";
+const CLIENT_SECRET = "hmevf40u4gqhb6xomz1sh6genw1vsf";
 
-{
-name:"StreamerOne",
-channel:"twitch_username",
-img:"https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/profile_image-70x70.png"
-}
-
+/* Kirjoita VAIN twitch käyttäjänimet */
+const channels = [
+"G3splitter",
+"twitch_username2"
 ];
 
-/* RENDER MEMBERS */
-
-const membersDiv=document.getElementById("members");
-
-teamMembers.forEach(m=>{
-
-let card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-<img src="${m.img}">
-<h3>${m.name}</h3>
-<div class="badge" id="${m.channel}-badge">OFFLINE</div>
-`;
-
-membersDiv.appendChild(card);
-
-});
-
-/* TWITCH AUTH */
+/* =============================================== */
 
 async function getToken(){
-
-const CLIENT_ID="TÄHÄN";
-const CLIENT_SECRET="TÄHÄN";
-
-const res=await fetch(
-"https://id.twitch.tv/oauth2/token",
-{
+const res = await fetch("https://id.twitch.tv/oauth2/token",{
 method:"POST",
-headers:{
-"Content-Type":"application/x-www-form-urlencoded"
-},
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
 body:
 "client_id="+CLIENT_ID+
 "&client_secret="+CLIENT_SECRET+
 "&grant_type=client_credentials"
 });
-
-const data=await res.json();
-
-return {token:data.access_token, clientID:CLIENT_ID};
-
+const data = await res.json();
+return data.access_token;
 }
 
-/* LIVE CHECK */
+async function loadData(){
 
-async function checkLive(){
+const token = await getToken();
 
-try{
+let liveList = [];
 
-const auth=await getToken();
-let liveChannels=[];
+for(const channel of channels){
 
-for(let m of teamMembers){
-
-const res=await fetch(
-"https://api.twitch.tv/helix/streams?user_login="+m.channel,
+/* Hae user info (nimi + kuva) */
+const userRes = await fetch(
+"https://api.twitch.tv/helix/users?login="+channel,
 {
 headers:{
-"Client-ID":auth.clientID,
-"Authorization":"Bearer "+auth.token
+"Client-ID":CLIENT_ID,
+"Authorization":"Bearer "+token
 }
 });
 
-const data=await res.json();
+const userData = await userRes.json();
+if(!userData.data.length) continue;
 
-let badge=document.getElementById(m.channel+"-badge");
+const user = userData.data[0];
 
-if(data.data && data.data.length>0){
+/* Luo kortti */
+const card = document.createElement("div");
+card.className="card";
+card.innerHTML=`
+<img src="${user.profile_image_url}">
+<h3>${user.display_name}</h3>
+<div class="badge" id="${channel}-badge">OFFLINE</div>
+`;
+document.getElementById("members").appendChild(card);
 
-badge.innerText="🔴 LIVE";
-liveChannels.push(m.channel);
+/* Tarkista live */
+const liveRes = await fetch(
+"https://api.twitch.tv/helix/streams?user_login="+channel,
+{
+headers:{
+"Client-ID":CLIENT_ID,
+"Authorization":"Bearer "+token
+}
+});
+const liveData = await liveRes.json();
 
-/* Show stream */
+if(liveData.data.length>0){
+document.getElementById(channel+"-badge").innerText="🔴 LIVE";
+liveList.push(channel);
+
+/* Näytä ensimmäinen live stream */
+if(!document.getElementById("streamBox").innerHTML){
 document.getElementById("streamBox").innerHTML=
-`<iframe src="https://player.twitch.tv/?channel=${m.channel}&parent=localhost&autoplay=true"></iframe>`;
-
-}else{
-badge.innerText="OFFLINE";
+`<iframe src="https://player.twitch.tv/?channel=${channel}&parent=StreamVerse26.github.io&autoplay=true"></iframe>`;
+}
+}
 }
 
-}
-
+/* Live status teksti */
 document.getElementById("liveStatus").innerText=
-liveChannels.length>0 ?
-"🔴 Live: "+liveChannels.join(", ")
+liveList.length>0 ?
+"🔴 Live: "+liveList.join(", ")
 :
 "🟢 No one live";
 
-}catch(e){
-console.log(e);
 }
 
-}
-
-checkLive();
-setInterval(checkLive,60000);
+loadData();
+setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60000);
 
 </script>
-
 </body>
 </html>
