@@ -117,10 +117,18 @@ transform:scale(1.08);
 position:absolute;
 top:15px;
 right:15px;
-background:#ff4040;
+background:#28c76f;
 padding:6px 14px;
 border-radius:20px;
 font-size:12px;
+box-shadow:0 0 20px rgba(40,199,111,.5);
+animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1); opacity:1;}
+50%{transform:scale(1.08); opacity:.8;}
+100%{transform:scale(1); opacity:1;}
 }
 
 iframe{
@@ -246,7 +254,7 @@ document.getElementById("liveStatus").innerText=
 liveList.length>0 ?
 "🔴 Live: "+liveList.join(", ")
 :
-"🟢 No one live";
+"❌ No one live";
 
 }
 
@@ -256,6 +264,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
