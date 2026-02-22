@@ -83,6 +83,13 @@ cursor:pointer;
 display:block;
 }
 
+.card.live{
+box-shadow:
+0 0 40px rgba(40,199,111,.4),
+0 0 80px rgba(40,199,111,.2);
+border:1px solid rgba(40,199,111,.6);
+}
+
 .card:hover{
 transform:translateY(-10px) scale(1.02);
 box-shadow:
@@ -237,6 +244,8 @@ const viewers = liveData.data[0].viewer_count;
 document.getElementById(channel+"-badge").innerText="🔴 LIVE";
 document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 
+card.classList.add("live");
+  
 liveList.push(channel);
 document.getElementById(channel+"-badge").innerText="🔴 LIVE";
 liveList.push(channel);
@@ -264,6 +273,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
