@@ -124,12 +124,10 @@ transform:scale(1.08);
 position:absolute;
 top:15px;
 right:15px;
-background:#28c76f;
+background:#555;
 padding:6px 14px;
 border-radius:20px;
 font-size:12px;
-box-shadow:0 0 20px rgba(40,199,111,.5);
-animation:pulse 1.8s infinite;
 }
 
 @keyframes pulse{
@@ -239,13 +237,18 @@ headers:{
 const liveData = await liveRes.json();
 
 if(liveData.data.length>0){
+
 const viewers = liveData.data[0].viewer_count;
 
-document.getElementById(channel+"-badge").innerText="🔴 LIVE";
+const badge = document.getElementById(channel+"-badge");
+badge.innerText="🔴 LIVE";
+badge.style.background="#28c76f";
+badge.style.boxShadow="0 0 20px rgba(40,199,111,.5)";
+
 document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 
 card.classList.add("live");
-  
+
 liveList.push(channel);
 document.getElementById(channel+"-badge").innerText="🔴 LIVE";
 liveList.push(channel);
@@ -273,6 +276,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
