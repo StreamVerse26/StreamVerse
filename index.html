@@ -90,6 +90,21 @@ box-shadow:
 border:1px solid rgba(40,199,111,.6);
 }
 
+/* OFFLINE cards fade */
+.card.offline{
+opacity:0.6;
+filter:grayscale(40%);
+}
+
+/* LIVE cards stand out */
+.card.live{
+opacity:1;
+order:-1;
+box-shadow:
+0 0 60px rgba(40,199,111,.3),
+0 0 120px rgba(40,199,111,.15);
+}  
+  
 .card:hover{
 transform:translateY(-10px) scale(1.02);
 box-shadow:
@@ -250,8 +265,13 @@ document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 card.classList.add("live");
 
 liveList.push(channel);
-document.getElementById(channel+"-badge").innerText="🔴 LIVE";
-liveList.push(channel);
+
+}
+else{
+
+card.classList.add("offline");
+
+}
 
 /* Näytä ensimmäinen live stream */
 if(!document.getElementById("streamBox").innerHTML){
@@ -276,6 +296,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
