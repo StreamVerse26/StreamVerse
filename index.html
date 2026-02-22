@@ -202,8 +202,11 @@ if(!userData.data.length) continue;
 const user = userData.data[0];
 
 /* Luo kortti */
-const card = document.createElement("div");
+const card = document.createElement("a");
 card.className="card";
+card.href="https://twitch.tv/"+channel;
+card.target="_blank";
+
 card.innerHTML=`
 <img src="${user.profile_image_url}">
 <h3>${user.display_name}</h3>
@@ -249,6 +252,7 @@ setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60
 </script>
 </body>
 </html>
+
 
 
 
