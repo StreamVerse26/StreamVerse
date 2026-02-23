@@ -211,12 +211,12 @@ overflow:hidden;
 
 .tabSlider{
 display:flex;
-width:400%;
-transition:0.5s ease;
+width:100%;
+transition:transform 0.5s ease;
 }
 
 .tabPage{
-width:25%;
+min-width:100%;
 padding:20px;
 box-sizing:border-box;
 }
@@ -504,32 +504,25 @@ Our goal is to continuously develop and provide more features in the future, inc
 
 </div>
 
-    <!-- STREAMERS ⭐ TÄMÄ ON AINOA MEMBERS -->
-    <div class="tabPage">
-      <div class="members" id="members"></div>
-    </div>
+<!-- STREAMERS -->
+<div class="tabPage">
+<div class="members" id="members"></div>
+</div>
 
+<div class="tabPage">
+
+<!-- SOCIALS -->
 <div class="tabPage">
 
 <h2>Socials</h2>
 
 <div class="socialGrid">
 
-<a href="#" class="socialCard">
-💬 Discord
-</a>
+<a href="#" class="socialCard">💬 Discord</a>
+<a href="#" class="socialCard">📺 Twitch</a>
+<a href="#" class="socialCard">🐦 Twitter</a>
+<a href="#" class="socialCard">📸 Instagram</a>
 
-<a href="#" class="socialCard">
-📺 Twitch
-</a>
-
-<a href="#" class="socialCard">
-🐦 Twitter
-</a>
-
-<a href="#" class="socialCard">
-📸 Instagram
-</a>
 
 </div>
 
@@ -696,6 +689,7 @@ nav.style.display="flex";
 </script>
 </body>
 </html>
+
 
 
 
