@@ -20,15 +20,14 @@ text-align:center;
 /* HEADER */
 
 header{
-padding:60px 20px;
+padding:50px 20px;
 background:radial-gradient(circle,#1b0d2e,#0b0b15);
-position:relative;
 }
 
 .logo{
-width:90px;
+width:100px;
 border-radius:12px;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .titleGlow{
@@ -84,8 +83,8 @@ transition:transform .5s ease;
 
 .tabPage{
 min-width:100%;
-padding:20px;
 box-sizing:border-box;
+padding:20px;
 }
 
 /* CARDS */
@@ -100,10 +99,9 @@ margin:auto;
 
 .card{
 background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:30px;
-border-radius:25px;
+padding:25px;
+border-radius:20px;
 transition:.3s;
-position:relative;
 }
 
 .card:hover{
@@ -143,8 +141,8 @@ margin:auto;
 }
 
 .aboutBullets p{
-margin:6px 0;
 text-align:left;
+margin:6px 0;
 }
 
 /* SOCIALS */
@@ -160,8 +158,8 @@ margin-top:30px;
 background:#1a1a2f;
 padding:25px;
 border-radius:18px;
-text-decoration:none;
 color:white;
+text-decoration:none;
 transition:.3s;
 }
 
@@ -231,7 +229,6 @@ margin-top:40px;
 
 <p>
 StreamVerse is a community platform connecting streamers and viewers.
-Our goal is to help creators grow and reach their audience.
 </p>
 
 <p>Future features:</p>
@@ -239,7 +236,7 @@ Our goal is to help creators grow and reach their audience.
 <div class="aboutBullets">
 <p>✨ Creator of the Month</p>
 <p>📰 News & Updates</p>
-<p>🏆 Tournaments & Events</p>
+<p>🏆 Tournaments</p>
 <p>🤝 Partnerships</p>
 </div>
 
@@ -253,7 +250,6 @@ Our goal is to help creators grow and reach their audience.
 
 <!-- SOCIALS -->
 <div class="tabPage">
-
 <h2>Socials</h2>
 
 <div class="socialGrid">
@@ -262,7 +258,6 @@ Our goal is to help creators grow and reach their audience.
 <a class="socialCard">🐦 Twitter</a>
 <a class="socialCard">📸 Instagram</a>
 </div>
-
 </div>
 
 <!-- CONTACT -->
@@ -355,7 +350,6 @@ if(liveData.data.length>0){
 const viewers = liveData.data[0].viewer_count;
 
 document.getElementById(channel+"-badge").innerText="🔴 LIVE";
-
 document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 
 card.classList.add("live");
@@ -397,742 +391,3 @@ document.querySelectorAll(".tabBtn")[index].classList.add("active");
 
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stream Verse</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-<style>
-
-/* BASIC */
-
-body{
-margin:0;
-font-family:Inter,sans-serif;
-background:#0b0b15;
-color:white;
-text-align:center;
-}
-
-/* HEADER */
-
-header{
-padding:60px 20px;
-background:radial-gradient(circle,#1b0d2e,#0b0b15);
-position:relative;
-}
-
-/* LOGO */
-
-.logo{
-width:200px; /* 120px -> ~40% isompi */
-position:absolute;
-left:30%;
-top:50%;
-transform:translate(-50%,-50%);
-border-radius:12px;
-}
-
-/* TITLE GLOW */
-
-.titleGlow{
-font-size:4rem;
-text-align:center;
-margin:0;
-text-shadow:0 0 30px rgba(255,0,150,.6);
-position:relative;
-display:inline-block;
-}
-
-/* MEMBERS */
-
-.members{
-max-width:1200px;
-margin:60px auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-padding:20px;
-}
-
-.card{
-background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:30px;
-border-radius:25px;
-transition:0.4s;
-position:relative;
-overflow:hidden;
-}
-
-.card{
-background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:30px;
-border-radius:25px;
-transition:0.3s ease;
-position:relative;
-overflow:hidden;
-text-decoration:none;
-color:white;
-cursor:pointer;
-display:block;
-}
-
-.card.live{
-box-shadow:
-0 0 40px rgba(40,199,111,.4),
-0 0 80px rgba(40,199,111,.2);
-border:1px solid rgba(40,199,111,.6);
-}
-
-.card:hover{
-transform:translateY(-10px) scale(1.02);
-box-shadow:
-0 0 50px rgba(255,0,150,.25),
-0 0 100px rgba(255,0,150,.1);
-}
-
-.card:hover::before{
-opacity:1;
-animation:shine 3s linear infinite;
-}
-
-@keyframes shine{
-0%{transform:rotate(0deg);}
-100%{transform:rotate(360deg);}
-}
-
-.card img{
-width:110px;
-height:110px;
-border-radius:50%;
-border:3px solid #ff4040;
-}
-
-.card.live img{
-border:3px solid #28c76f;
-box-shadow:0 0 25px rgba(40,199,111,.7);
-}
-
-.card:hover img{
-transform:scale(1.08);
-}
-
-.badge{
-position:absolute;
-top:15px;
-right:15px;
-background:#555;
-padding:6px 14px;
-border-radius:20px;
-font-size:12px;
-}
-
-@keyframes pulse{
-0%{transform:scale(1); opacity:1;}
-50%{transform:scale(1.08); opacity:.8;}
-100%{transform:scale(1); opacity:1;}
-}
-
-iframe{
-width:100%;
-height:600px;
-border:none;
-border-radius:20px;
-margin-top:40px;
-}
-
-.tabs{
-margin-top:30px;
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
-}
-
-.tabBtn{
-background:#1a1a2f;
-color:white;
-border:none;
-padding:12px 28px;
-border-radius:25px;
-cursor:pointer;
-font-size:15px;
-transition:0.3s ease;
-}
-
-.tabBtn:hover{
-background:#ff0096;
-transform:translateY(-3px);
-}
-
-.tabBtn.active{
-background:#28c76f;
-box-shadow:0 0 20px rgba(40,199,111,.5);
-}
-
-.tabContent{
-display:none;
-margin-top:40px;
-animation:fadeIn .4s ease;
-}
-
-.tabContent.active{
-display:block;
-}
-
-.tabWrapper{
-overflow:hidden;
-width:100%;
-margin-top:50px;
-}
-
-.tabSlider{
-display:flex;
-width:100%;
-transition:transform 0.5s ease-in-out;
-}
-
-.tabPage{
-min-width:100%;
-flex-shrink:0;
-padding:20px;
-box-sizing:border-box;
-}
-
-.tabWrapper{
-width:100%;
-overflow:hidden;
-}
-
-.tabSlider{
-display:flex;
-width:100%;
-transition:transform 0.5s ease;
-}
-
-.tabPage{
-min-width:100%;
-padding:20px;
-box-sizing:border-box;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(10px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width:768px){
-
-/* Tabs */
-.tabs{
-flex-wrap:wrap;
-gap:10px;
-padding:10px;
-}
-
-.tabBtn{
-width:45%;
-font-size:14px;
-padding:10px;
-}
-
-/* Cards */
-.card{
-padding:20px;
-}
-
-.card img{
-width:80px;
-height:80px;
-}
-
-/* Twitch player */
-iframe{
-height:300px;
-}
-
-/* Grid */
-.members{
-grid-template-columns:1fr;
-}
-
-/* Title */
-.titleGlow{
-font-size:2.2rem;
-}
-
-}
-
-.mobileMenu{
-display:none;
-position:absolute;
-right:20px;
-top:30px;
-}
-
-.mobileMenu button{
-font-size:28px;
-background:none;
-border:none;
-color:white;
-}
-
-.mobileNav{
-display:none;
-flex-direction:column;
-background:#121221;
-position:absolute;
-top:80px;
-right:20px;
-padding:20px;
-border-radius:15px;
-}
-
-.mobileNav button{
-background:none;
-border:none;
-color:white;
-padding:10px;
-}
-
-@media (max-width:768px){
-.mobileMenu{
-display:block;
-}
-
-.tabs{
-display:none;
-}
-}
-
-@media (max-width:768px){
-
-header{
-padding-top:120px;
-padding-bottom:40px;
-}
-
-/* Logo */
-.logo{
-position:relative;
-left:auto;
-top:auto;
-transform:none;
-display:block;
-margin:0 auto 20px auto;
-width:90px;
-}
-
-/* Title */
-.titleGlow{
-font-size:2.2rem;
-display:block;
-margin-bottom:15px;
-}
-
-/* Live status text */
-#liveStatus{
-margin-top:10px;
-font-size:14px;
-}
-/* Social */
-.socialGrid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-margin-top:30px;
-}
-
-.socialCard{
-background:#1a1a2f;
-padding:25px;
-border-radius:18px;
-text-decoration:none;
-color:white;
-font-size:18px;
-transition:.3s;
-}
-
-.socialCard:hover{
-transform:translateY(-6px);
-box-shadow:0 0 30px rgba(255,0,150,.3);
-}
-  
-}
-/* about us txt */
-.aboutCard{
-background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:40px;
-border-radius:25px;
-box-shadow:0 0 60px rgba(255,0,150,.15);
-max-width:900px;
-margin:auto;
-}
-
-.aboutTitle{
-font-size:2.5rem;
-margin-bottom:20px;
-text-shadow:0 0 20px rgba(255,0,150,.5);
-}
-
-.aboutText{
-line-height:1.7;
-opacity:.9;
-margin-bottom:40px;
-}
-
-.aboutStats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:25px;
-}
-
-.aboutStats div{
-background:#1a1a2f;
-padding:20px;
-border-radius:18px;
-transition:.3s;
-}
-
-.aboutStats div:hover{
-transform:translateY(-5px);
-box-shadow:0 0 30px rgba(255,0,150,.2);
-}
-
-.aboutStats h3{
-color:#ff0096;
-margin-bottom:8px;
-}
-
-.aboutBullets{
-padding-left:0;
-}
-
-.aboutBullets p{
-margin:6px 0;
-padding-left:25px;
-text-indent:-25px;
-}
-  
-</style>
-</head>
-<body>
-
-<header>
-
-<img src="SVLogo.png" class="logo">
-<h1 class="titleGlow">StreamVerse</h1>
-<div id="liveStatus"></div>
-
-</header>
-  <!-- mobile -->
-<div class="mobileMenu">
-  <button onclick="toggleMenu()">☰</button>
-</div>
-
-<div class="mobileNav" id="mobileNav">
-  <button onclick="openTab(0)">Home</button>
-  <button onclick="openTab(1)">About</button>
-  <button onclick="openTab(2)">Streamers</button>
-  <button onclick="openTab(3)">Contact</button>
-</div>
-      <!-- idk-->
-<div class="tabs">
-  <button class="tabBtn active" onclick="openTab(0)">Home</button>
-  <button class="tabBtn" onclick="openTab(1)">About Us</button>
-  <button class="tabBtn" onclick="openTab(2)">Streamers</button>
-  <button class="tabBtn" onclick="openTab(3)">Contact Us</button>
-</div>
-
-<div class="tabWrapper">
-  <div class="tabSlider" id="tabSlider">
-
-    <!-- HOME -->
-    <div class="tabPage">
-      <div id="streamBox"></div>
-    </div>
-
-    <!-- ABOUT -->
-<div class="aboutCard">
-
-<h2 class="aboutTitle">About StreamVerse</h2>
-
-<p class="aboutText">
-Many talented streamers struggle to reach their desired audience on their own. Streamer Hub is a modern content creator community platform that connects streamers, viewers, and growth opportunities into one unified ecosystem.
-
-Our goal is to help both new and experienced content creators find their audience, increase their visibility, and build long-lasting communities around their content.
-
-We are more than just a streamer listing platform — we are a growing community that supports content creators through collaboration, events, and visibility opportunities.
-  
--Community, Visibility, Growth.
-</p>
-  
-<p class="aboutText">
-Our goal is to continuously develop and provide more features in the future, including:
-</p>
-
-<div class="aboutBullets">
-<p><strong>✨ Creator of the Month</strong> – Highlighting active and talented content creators</p>
-<p><strong>📰 News and Updates – Stay</strong> informed about events and platform updates</p>
-<p><strong>🏆 Tournaments and Events</strong> – Community competitions and activities</p>
-<p><strong>🤝 Potential Sponsorship and Partnership Opportunities</strong></p>
-</div>
-
-<div class="aboutStats">
-<div>
-<h3>Community</h3>
-<p>Growing every day</p>
-</div>
-
-<div>
-<h3>Creators</h3>
-<p>Supported worldwide</p>
-</div>
-
-<div>
-<h3>Live Content</h3>
-<p>Real-time discovery</p>
-</div>
-</div>
-
-</div>
-
-<!-- STREAMERS -->
-<div class="tabPage">
-<div class="members" id="members"></div>
-</div>
-
-<div class="tabPage">
-
-<!-- SOCIALS -->
-<div class="tabPage">
-
-<h2>Socials</h2>
-
-<div class="socialGrid">
-
-<a href="#" class="socialCard">💬 Discord</a>
-<a href="#" class="socialCard">📺 Twitch</a>
-<a href="#" class="socialCard">🐦 Twitter</a>
-<a href="#" class="socialCard">📸 Instagram</a>
-
-
-</div>
-
-</div>
-    
-    <!-- CONTACT -->
-    <div class="tabPage">
-      <h2>Contact Us</h2>
-      <p>contact@streamverse.gg</p>
-    </div>
-
-  </div>
-</div>
-
-<script>
-
-/* ================= MUOKKAA TÄMÄ ================= */
-
-const CLIENT_ID = "zty6qtjqzi0cl7m6yoxordesatqklv";
-const CLIENT_SECRET = "hmevf40u4gqhb6xomz1sh6genw1vsf";
-
-/* Kirjoita VAIN twitch käyttäjänimet */
-const channels = [
-"G3splitter",
-"Koeda666"
-];
-
-/* =============================================== */
-
-async function getToken(){
-const res = await fetch("https://id.twitch.tv/oauth2/token",{
-method:"POST",
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-body:
-"client_id="+CLIENT_ID+
-"&client_secret="+CLIENT_SECRET+
-"&grant_type=client_credentials"
-});
-const data = await res.json();
-return data.access_token;
-}
-
-async function loadData(){
-
-const membersDiv = document.getElementById("members");
-if(!membersDiv) return;
-
-membersDiv.innerHTML = "";
-
-const token = await getToken();
-
-let liveList = [];
-
-for(const channel of channels){
-
-/* Hae user info (nimi + kuva) */
-const userRes = await fetch(
-"https://api.twitch.tv/helix/users?login="+channel,
-{
-headers:{
-"Client-ID":CLIENT_ID,
-"Authorization":"Bearer "+token
-}
-});
-
-const userData = await userRes.json();
-if(!userData.data.length) continue;
-
-const user = userData.data[0];
-
-/* Luo kortti */
-const card = document.createElement("a");
-card.className="card";
-card.href="https://twitch.tv/"+channel;
-card.target="_blank";
-
-card.innerHTML=`
-<img src="${user.profile_image_url}">
-<h3>${user.display_name}</h3>
-<div class="badge" id="${channel}-badge">OFFLINE</div>
-<div class="viewerCount" id="${channel}-viewers"></div>
-`;
-document.getElementById("members").appendChild(card);
-
-/* Tarkista live */
-const liveRes = await fetch(
-"https://api.twitch.tv/helix/streams?user_login="+channel,
-{
-headers:{
-"Client-ID":CLIENT_ID,
-"Authorization":"Bearer "+token
-}
-});
-const liveData = await liveRes.json();
-
-if(liveData.data.length>0){
-
-const viewers = liveData.data[0].viewer_count;
-
-const badge = document.getElementById(channel+"-badge");
-badge.innerText="🔴 LIVE";
-badge.style.background="#28c76f";
-badge.style.boxShadow="0 0 20px rgba(40,199,111,.5)";
-
-document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
-
-card.classList.add("live");
-
-liveList.push(channel);
-
-/* Näytä ensimmäinen live stream */
-if(!document.getElementById("streamBox").innerHTML){
-document.getElementById("streamBox").innerHTML=
-`<iframe src="https://player.twitch.tv/?channel=${channel}&parent=StreamVerse26.github.io&autoplay=true&muted=true"></iframe>`;
-}
-}
-}
-
-/* Live status teksti */
-document.getElementById("liveStatus").innerText=
-liveList.length>0 ?
-"🔴 Live: "+liveList.join(", ")
-:
-"❌ No one live";
-
-}
-
-loadData();
-setInterval(()=>{
-  const membersDiv = document.getElementById("members");
-  if(membersDiv){
-    membersDiv.innerHTML="";
-    loadData();
-  }
-},60000);
-
-/* TAB FUNKTIO */
-
-function openTab(index){
-
-document.getElementById("tabSlider")
-.style.transform = "translateX(-"+(index*25)+"%)";
-
-document.querySelectorAll(".tabBtn")
-.forEach(btn=>btn.classList.remove("active"));
-
-document.querySelectorAll(".tabBtn")[index]
-.classList.add("active");
-}
-
- /* mobile */ 
-function toggleMenu(){
-
-const nav = document.getElementById("mobileNav");
-
-if(nav.style.display==="flex"){
-nav.style.display="none";
-}else{
-nav.style.display="flex";
-}
-
-}
-  
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
