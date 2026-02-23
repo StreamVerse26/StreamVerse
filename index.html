@@ -225,6 +225,92 @@ from{opacity:0; transform:translateY(10px);}
 to{opacity:1; transform:translateY(0);}
 }
 
+/* ===== MOBILE ===== */
+
+@media (max-width:768px){
+
+/* Tabs */
+.tabs{
+flex-wrap:wrap;
+gap:10px;
+padding:10px;
+}
+
+.tabBtn{
+width:45%;
+font-size:14px;
+padding:10px;
+}
+
+/* Cards */
+.card{
+padding:20px;
+}
+
+.card img{
+width:80px;
+height:80px;
+}
+
+/* Twitch player */
+iframe{
+height:300px;
+}
+
+/* Grid */
+.members{
+grid-template-columns:1fr;
+}
+
+/* Title */
+.titleGlow{
+font-size:2.2rem;
+}
+
+}
+
+.mobileMenu{
+display:none;
+position:absolute;
+right:20px;
+top:30px;
+}
+
+.mobileMenu button{
+font-size:28px;
+background:none;
+border:none;
+color:white;
+}
+
+.mobileNav{
+display:none;
+flex-direction:column;
+background:#121221;
+position:absolute;
+top:80px;
+right:20px;
+padding:20px;
+border-radius:15px;
+}
+
+.mobileNav button{
+background:none;
+border:none;
+color:white;
+padding:10px;
+}
+
+@media (max-width:768px){
+.mobileMenu{
+display:block;
+}
+
+.tabs{
+display:none;
+}
+}
+  
 </style>
 </head>
 <body>
@@ -236,7 +322,18 @@ to{opacity:1; transform:translateY(0);}
 <div id="liveStatus"></div>
 
 </header>
+  <!-- mobile -->
+<div class="mobileMenu">
+  <button onclick="toggleMenu()">☰</button>
+</div>
 
+<div class="mobileNav" id="mobileNav">
+  <button onclick="openTab(0)">Home</button>
+  <button onclick="openTab(1)">About</button>
+  <button onclick="openTab(2)">Streamers</button>
+  <button onclick="openTab(3)">Contact</button>
+</div>
+      <!-- idk-->
 <div class="tabs">
   <button class="tabBtn active" onclick="openTab(0)">Home</button>
   <button class="tabBtn" onclick="openTab(1)">About Us</button>
@@ -407,10 +504,24 @@ document.querySelectorAll(".tabBtn")
 document.querySelectorAll(".tabBtn")[index]
 .classList.add("active");
 }
+
+ /* mobile */ 
+function toggleMenu(){
+
+const nav = document.getElementById("mobileNav");
+
+if(nav.style.display==="flex"){
+nav.style.display="none";
+}else{
+nav.style.display="flex";
+}
+
+}
   
 </script>
 </body>
 </html>
+
 
 
 
