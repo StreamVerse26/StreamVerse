@@ -185,6 +185,24 @@ animation:fadeIn .4s ease;
 display:block;
 }
 
+.tabWrapper{
+overflow:hidden;
+width:100%;
+margin-top:50px;
+}
+
+.tabSlider{
+display:flex;
+width:400%;
+transition:transform 0.5s ease-in-out;
+}
+
+.tabPage{
+width:100%;
+flex-shrink:0;
+padding:20px;
+}
+
 @keyframes fadeIn{
 from{opacity:0; transform:translateY(10px);}
 to{opacity:1; transform:translateY(0);}
@@ -203,28 +221,34 @@ to{opacity:1; transform:translateY(0);}
 </header>
 
 <div class="tabs">
-  <button class="tabBtn active" onclick="openTab(event,'home')">Home</button>
-  <button class="tabBtn" onclick="openTab(event,'about')">About Us</button>
-  <button class="tabBtn" onclick="openTab(event,'streamers')">Streamers</button>
-  <button class="tabBtn" onclick="openTab(event,'contact')">Contact Us</button>
+  <button class="tabBtn active" onclick="openTab(0)">Home</button>
+  <button class="tabBtn" onclick="openTab(1)">About Us</button>
+  <button class="tabBtn" onclick="openTab(2)">Streamers</button>
+  <button class="tabBtn" onclick="openTab(3)">Contact Us</button>
 </div>
 
-<div id="home" class="tabContent active">
-  <div id="streamBox"></div>
-</div>
+<div class="tabWrapper">
+  <div class="tabSlider" id="tabSlider">
 
-<div id="about" class="tabContent">
-  <h2>About StreamVerse</h2>
-  <p>We are a community-driven Twitch network bringing creators together.</p>
-</div>
+    <section class="tabPage">
+      <div id="streamBox"></div>
+    </section>
 
-<div id="streamers" class="tabContent">
-  <div class="members" id="members"></div>
-</div>
+    <section class="tabPage">
+      <h2>About StreamVerse</h2>
+      <p>We are a community-driven Twitch network bringing creators together.</p>
+    </section>
 
-<div id="contact" class="tabContent">
-  <h2>Contact Us</h2>
-  <p>Email: contact@streamverse.gg</p>
+    <section class="tabPage">
+      <div class="members" id="members"></div>
+    </section>
+
+    <section class="tabPage">
+      <h2>Contact Us</h2>
+      <p>Email: contact@streamverse.gg</p>
+    </section>
+
+  </div>
 </div>
 
 <script>
@@ -357,6 +381,7 @@ evt.currentTarget.classList.add("active");
 </script>
 </body>
 </html>
+
 
 
 
