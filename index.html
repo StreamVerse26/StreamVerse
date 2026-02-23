@@ -389,13 +389,15 @@ margin-bottom:8px;
 }
 
 .aboutList{
-list-style:none;
-padding:0;
-margin-top:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
-.aboutList li{
-margin:8px 0;
+.aboutItem{
+display:flex;
+align-items:flex-start;
+gap:10px;
 line-height:1.6;
 }
   
@@ -456,12 +458,17 @@ We are more than just a streamer listing platform — we are a growing community
 Our goal is to continuously develop and provide more features in the future, including:
 </p>
 
-<ul class="aboutList">
-<li>✨ Creator of the Month – Highlighting active and talented content creators</li>
-<li>📰 News and Updates – Stay informed about events and platform updates</li>
-<li>🏆 Tournaments and Events – Community competitions and activities</li>
-<li>🤝 Potential Sponsorship and Partnership Opportunities</li>
-</ul>
+<div class="aboutList">
+
+<div class="aboutItem">✨ Creator of the Month – Highlighting active and talented content creators</div>
+
+<div class="aboutItem">📰 News and Updates – Stay informed about events and platform updates</div>
+
+<div class="aboutItem">🏆 Tournaments and Events – Community competitions and activities</div>
+
+<div class="aboutItem">🤝 Potential Sponsorship and Partnership Opportunities</div>
+
+</div>
 
 <div class="aboutStats">
 <div>
@@ -648,6 +655,7 @@ nav.style.display="flex";
 </script>
 </body>
 </html>
+
 
 
 
