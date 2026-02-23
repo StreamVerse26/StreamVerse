@@ -146,6 +146,50 @@ border-radius:20px;
 margin-top:40px;
 }
 
+.tabs{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.tabBtn{
+background:#1a1a2f;
+color:white;
+border:none;
+padding:12px 28px;
+border-radius:25px;
+cursor:pointer;
+font-size:15px;
+transition:0.3s ease;
+}
+
+.tabBtn:hover{
+background:#ff0096;
+transform:translateY(-3px);
+}
+
+.tabBtn.active{
+background:#28c76f;
+box-shadow:0 0 20px rgba(40,199,111,.5);
+}
+
+.tabContent{
+display:none;
+margin-top:40px;
+animation:fadeIn .4s ease;
+}
+
+.tabContent.active{
+display:block;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
 </style>
 </head>
 <body>
@@ -158,8 +202,30 @@ margin-top:40px;
 
 </header>
 
-<div id="streamBox"></div>
-<div class="members" id="members"></div>
+<div class="tabs">
+  <button class="tabBtn active" onclick="openTab(event,'home')">Home</button>
+  <button class="tabBtn" onclick="openTab(event,'about')">About Us</button>
+  <button class="tabBtn" onclick="openTab(event,'streamers')">Streamers</button>
+  <button class="tabBtn" onclick="openTab(event,'contact')">Contact Us</button>
+</div>
+
+<div id="home" class="tabContent active">
+  <div id="streamBox"></div>
+</div>
+
+<div id="about" class="tabContent">
+  <h2>About StreamVerse</h2>
+  <p>We are a community-driven Twitch network bringing creators together.</p>
+</div>
+
+<div id="streamers" class="tabContent">
+  <div class="members" id="members"></div>
+</div>
+
+<div id="contact" class="tabContent">
+  <h2>Contact Us</h2>
+  <p>Email: contact@streamverse.gg</p>
+</div>
 
 <script>
 
@@ -251,8 +317,6 @@ document.getElementById(channel+"-viewers").innerText="👁️ "+viewers;
 card.classList.add("live");
 
 liveList.push(channel);
-document.getElementById(channel+"-badge").innerText="🔴 LIVE";
-liveList.push(channel);
 
 /* Näytä ensimmäinen live stream */
 if(!document.getElementById("streamBox").innerHTML){
@@ -274,9 +338,24 @@ liveList.length>0 ?
 loadData();
 setInterval(()=>{document.getElementById("members").innerHTML="";loadData();},60000);
 
+/* TAB FUNKTIO */
+
+function openTab(evt, tabId){
+
+document.querySelectorAll(".tabContent")
+.forEach(tab => tab.classList.remove("active"));
+
+document.querySelectorAll(".tabBtn")
+.forEach(btn => btn.classList.remove("active"));
+
+document.getElementById(tabId).classList.add("active");
+evt.currentTarget.classList.add("active");
+}
+  
 </script>
 </body>
 </html>
+
 
 
 
