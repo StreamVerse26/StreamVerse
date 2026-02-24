@@ -10,7 +10,7 @@ const response = await fetch(
 "https://api.twitch.tv/helix/users?login="+login,
 {
 headers:{
-"Authorization": "Bearer " + token,
+"Authorization":"Bearer "+token,
 "Client-Id": process.env.CLIENT_ID
 }
 }
