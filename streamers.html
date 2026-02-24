@@ -171,13 +171,10 @@ const token = await getToken();
 for(const channel of channels){
 
 const userRes = await fetch(
-"https://api.twitch.tv/helix/users?login="+channel,
-{
-headers:{
-"Client-ID":process.env.CLIENT_ID,
-"Authorization":"Bearer "+token
-}
-});
+"/api/twitchUser?login="+channel+"&token="+token
+);
+
+const userData = await userRes.json();
 
 const userData = await userRes.json();
 if(!userData.data.length) continue;
@@ -206,6 +203,7 @@ window.onload = loadData;
   
 </body>
 </html>
+
 
 
 
