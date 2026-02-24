@@ -27,8 +27,6 @@ const userRes = await fetch(
 
 const userData = await userRes.json();
 
-console.log("Twitch response:", userData);
-
 if(!userData?.data?.length) continue;
 
 const user = userData.data[0];
