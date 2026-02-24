@@ -95,16 +95,11 @@ width:auto;
 <a href="about.html">About</a>
 <a href="streamers.html">Streamers</a>
 <a href="contact.html">Contact</a>
-
 </nav>
 
 <section>
 <div class="members" id="members"></div>
 </section>
-
-<script>
-
-
 
 <script>
 
@@ -119,16 +114,16 @@ function loadData(){
 const membersDiv = document.getElementById("members");
 if(!membersDiv) return;
 
-membersDiv.innerHTML = "";
+membersDiv.innerHTML="";
 
-channels.forEach(channel => {
+channels.forEach(channel=>{
 
-const card = document.createElement("a");
-card.className = "card";
-card.href = "https://twitch.tv/" + channel;
-card.target = "_blank";
+const card=document.createElement("a");
+card.className="card";
+card.href="https://twitch.tv/"+channel;
+card.target="_blank";
 
-card.innerHTML = `
+card.innerHTML=`
 <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
 <h3>${channel}</h3>
 `;
@@ -139,12 +134,13 @@ membersDiv.appendChild(card);
 
 }
 
-window.onload = loadData;
+window.onload=loadData;
 
 </script>
-
+  
 </body>
 </html>
+
 
 
 
