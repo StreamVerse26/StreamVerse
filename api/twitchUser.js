@@ -11,12 +11,15 @@ const response = await fetch(
 {
 headers:{
 "Client-ID": process.env.CLIENT_ID,
-"Authorization": "Bearer " + token
+"Authorization": "Bearer " + token,
+"User-Agent": "StreamVerse-App"
 }
 }
 );
 
 const data = await response.json();
+
+console.log("Twitch user API:", data);
 
 res.json(data);
 
