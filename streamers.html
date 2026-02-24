@@ -106,7 +106,9 @@ width:auto;
 
 
 
-/* Kirjoita VAIN twitch käyttäjänimet */
+<script>
+
+/* Twitch käyttäjät (voit muokata) */
 const channels = [
 "G3splitter",
 "Koeda666",
@@ -120,30 +122,22 @@ if(!membersDiv) return;
 
 membersDiv.innerHTML = "";
 
+/* --- Demo data ilman Twitch API tokenia --- */
+
 for(const channel of channels){
 
-const userRes = await fetch(
-"https://api.twitch.tv/helix/users?login="+channel,
-{
-headers:{
-}
-});
-
-const userData = await userRes.json();
-if(!userData.data.length) continue;
-
-const user = userData.data[0];
-
 const card = document.createElement("a");
+card.className="card";
 card.href="https://twitch.tv/"+channel;
 card.target="_blank";
 
-card.innerHTML=`
-<img src="${user.profile_image_url}" style="width:100px;border-radius:50%;">
-<h3>${user.display_name}</h3>
+card.innerHTML = `
+<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
+<h3>${channel}</h3>
 `;
 
-document.getElementById("members").appendChild(card);
+membersDiv.appendChild(card);
+
 }
 
 }
@@ -154,6 +148,7 @@ loadData();
 
 </body>
 </html>
+
 
 
 
