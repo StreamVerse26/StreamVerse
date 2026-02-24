@@ -75,6 +75,74 @@ width:auto;
 <div class="members" id="members"></div>
 </section>
 
+<script>
+
+const CLIENT_ID = "SINUN_CLIENT_ID";
+const CLIENT_SECRET = "SINUN_SECRET";
+
+const channels = [
+"nick1",
+"nick2",
+"nick3"
+];
+
+async function getToken(){
+const res = await fetch("https://id.twitch.tv/oauth2/token",{
+method:"POST",
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+body:
+"client_id="+CLIENT_ID+
+"&client_secret="+CLIENT_SECRET+
+"&grant_type=client_credentials"
+});
+const data = await res.json();
+return data.access_token;
+}
+
+async function loadData(){
+
+const membersDiv = document.getElementById("members");
+if(!membersDiv) return;
+
+membersDiv.innerHTML = "";
+
+const token = await getToken();
+
+for(const channel of channels){
+
+const userRes = await fetch(
+"https://api.twitch.tv/helix/users?login="+channel,
+{
+headers:{
+"Client-ID":CLIENT_ID,
+"Authorization":"Bearer "+token
+}
+});
+
+const userData = await userRes.json();
+if(!userData.data.length) continue;
+
+const user = userData.data[0];
+
+const card = document.createElement("a");
+card.href="https://twitch.tv/"+channel;
+card.target="_blank";
+
+card.innerHTML=`
+<img src="${user.profile_image_url}" style="width:100px;border-radius:50%;">
+<h3>${user.display_name}</h3>
+`;
+
+document.getElementById("members").appendChild(card);
+}
+
+}
+
+loadData();
+
+</script>
+
 </body>
 </html>
+
 
