@@ -44,6 +44,33 @@ border-radius:25px;
 .navbar a:hover{
 background:#ff0096;
 }
+/* streamer profile cards */
+.card{
+background:linear-gradient(145deg,#1a1a2f,#121221);
+padding:30px;
+border-radius:25px;
+transition:0.3s ease;
+color:white;
+text-decoration:none;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.02);
+box-shadow:
+0 0 50px rgba(255,0,150,.25),
+0 0 100px rgba(255,0,150,.1);
+}
+
+.card img{
+width:110px;
+height:110px;
+border-radius:50%;
+border:3px solid #ff4040;
+}
 
 /* logo */
 .logo{
@@ -147,6 +174,7 @@ loadData();
 
 </body>
 </html>
+
 
 
 
