@@ -10,16 +10,13 @@ const response = await fetch(
 "https://api.twitch.tv/helix/users?login="+login,
 {
 headers:{
-"Client-ID": process.env.CLIENT_ID,
 "Authorization": "Bearer " + token,
-"User-Agent": "StreamVerse-App"
+"Client-Id": process.env.CLIENT_ID
 }
 }
 );
 
 const data = await response.json();
-
-console.log("Twitch user API:", data);
 
 res.json(data);
 
