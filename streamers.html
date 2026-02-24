@@ -176,7 +176,13 @@ const userRes = await fetch(
 
 
 const userData = await userRes.json();
-if(!userData.data.length) continue;
+
+console.log("Twitch response:", userData);
+
+if(!userData || !userData.data || userData.data.length === 0){
+console.log("No user data for:", channel);
+continue;
+}
 
 const user = userData.data[0];
 
@@ -202,6 +208,7 @@ window.onload = loadData;
   
 </body>
 </html>
+
 
 
 
