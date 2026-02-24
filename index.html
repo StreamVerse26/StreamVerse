@@ -60,14 +60,6 @@ gap:30px;
 padding:20px;
 }
 
-.card{
-background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:30px;
-border-radius:25px;
-transition:0.4s;
-position:relative;
-overflow:hidden;
-}
 
 .card{
 background:linear-gradient(145deg,#1a1a2f,#121221);
@@ -132,11 +124,6 @@ border-radius:20px;
 font-size:12px;
 }
 
-@keyframes pulse{
-0%{transform:scale(1); opacity:1;}
-50%{transform:scale(1.08); opacity:.8;}
-100%{transform:scale(1); opacity:1;}
-}
 
 iframe{
 width:100%;
@@ -146,153 +133,7 @@ border-radius:20px;
 margin-top:40px;
 }
 
-/* ================= NAVIGATION TABS ================= */
 
-.tabs{
-margin-top:30px;
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
-}
-
-.tabBtn{
-background:#1a1a2f;
-color:white;
-border:none;
-padding:12px 28px;
-border-radius:25px;
-cursor:pointer;
-font-size:15px;
-transition:0.3s ease;
-}
-
-.tabBtn:hover{
-background:#ff0096;
-transform:translateY(-3px);
-}
-
-.tabBtn.active{
-background:#28c76f;
-box-shadow:0 0 20px rgba(40,199,111,.5);
-}
-
-/* ================= TAB CONTAINER ================= */
-
-.tabWrapper{
-width:100%;
-overflow:hidden;
-margin-top:50px;
-}
-
-.tabSlider{
-display:flex;
-width:100%;
-overflow:hidden;
-}
-
-.tabPage{
-flex:0 0 100%;
-}
-
-/* ================= ANIMATION ================= */
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width:768px){
-
-/* Tabs */
-.tabs{
-flex-wrap:wrap;
-gap:10px;
-padding:10px;
-}
-
-.tabBtn{
-width:45%;
-font-size:14px;
-padding:10px;
-}
-
-/* Cards */
-.card{
-padding:20px;
-}
-
-.card img{
-width:80px;
-height:80px;
-}
-
-/* Twitch player */
-iframe{
-height:300px;
-}
-
-/* Grid */
-.members{
-grid-template-columns:1fr;
-}
-
-/* Title */
-.titleGlow{
-font-size:2.2rem;
-}
-
-}
-/* mobile */
-.mobileMenu{
-display:none;
-position:absolute;
-right:20px;
-top:30px;
-}
-
-.mobileMenu button{
-font-size:28px;
-background:none;
-border:none;
-color:white;
-}
-
-.mobileNav{
-display:none;
-flex-direction:column;
-background:#121221;
-position:absolute;
-top:80px;
-right:20px;
-padding:20px;
-border-radius:15px;
-}
-
-.mobileNav button{
-background:none;
-border:none;
-color:white;
-padding:10px;
-}
-
-@media (max-width:768px){
-.mobileMenu{
-display:block;
-}
-
-.tabs{
-display:none;
-}
-}
 
 @media (max-width:768px){
 
@@ -371,19 +212,35 @@ color:#ff0096;
 margin-bottom:8px;
 }
 
-.aboutList{
+/* navi bar */  
+  .navbar{
 display:flex;
-flex-direction:column;
-gap:10px;
+justify-content:center;
+gap:25px;
+padding:20px;
+flex-wrap:wrap;
 }
 
-.aboutItem{
-display:flex;
-align-items:flex-start;
-gap:10px;
-line-height:1.6;
+.navbar a{
+color:white;
+text-decoration:none;
+padding:10px 18px;
+border-radius:25px;
+transition:0.3s;
 }
-  
+
+.navbar a:hover{
+background:#ff0096;
+}
+
+#streamBox iframe{
+max-width:100%;
+width:100%;
+height:600px;
+display:block;
+margin:auto;
+}
+
 </style>
 </head>
 <body>
@@ -395,51 +252,41 @@ line-height:1.6;
 <div id="liveStatus"></div>
 
 </header>
-  <!-- mobile -->
-<div class="mobileMenu">
-  <button onclick="toggleMenu()">☰</button>
-</div>
+  
+      <!-- NAVBAR-->
+<nav class="navbar">
 
-<div class="mobileNav" id="mobileNav">
-  <button onclick="openTab(0)">Home</button>
-  <button onclick="openTab(1)">About</button>
-  <button onclick="openTab(2)">Streamers</button>
-  <button onclick="openTab(3)">Contact</button>
-</div>
-      <!-- tabit-->
-<div class="tabs">
-  <button class="tabBtn active" onclick="openTab(0)">Home</button>
-  <button class="tabBtn" onclick="openTab(1)">News</button>
-  <button class="tabBtn" onclick="openTab(2)">Creator of the Month</button>
-  <button class="tabBtn" onclick="openTab(3)">About Us</button>
-  <button class="tabBtn" onclick="openTab(4)">Streamers</button>
-  <button class="tabBtn" onclick="openTab(5)">Contact Us</button>
-</div>
+<a href="index.html">Home</a>
+<a href="news.html">News</a>
+<a href="creator.html">Creator of Month</a>
+<a href="about.html">About</a>
+<a href="streamers.html">Streamers</a>
+<a href="contact.html">Contact</a>
 
-<div class="tabWrapper">
-  <div class="tabSlider" id="tabSlider">
+</nav>
+
 
     <!-- 0 HOME -->
-    <div class="tabPage">
+    <section>
       <div id="streamBox"></div>
-    </div>
+   </section>
 
 <!-- 1 NEWS -->
-<div class="tabPage">
+  <section>
 <h2>📰 News</h2>
 <p>StreamVerse updates coming soon.</p>
-</div>
+</section>
     
 <!-- 2 CREATOR OF THE MONTH -->
-<div class="tabPage">
+  <section>
   <h2>🏆 Creator of the Month</h2>
   <p style="font-size:2rem; opacity:.7; margin-top:40px;">
     TBA
   </p>
-</div>
+</section>
     
     <!-- 3 ABOUT US -->
-<div class="tabPage">    
+  <section>
 <div class="aboutCard">
   
 <h2 class="aboutTitle">About StreamVerse</h2>
@@ -480,21 +327,19 @@ Our goal is to continuously develop and provide more features in the future, inc
 </div>
   
 </div> <!-- aboutCard end -->
-</div> <!-- tabPage end -->
-
+</section>
     <!-- 4 STREAMERS -->
-    <div class="tabPage">
+  <section>
       <div class="members" id="members"></div>
-    </div>
+</section>
 
     <!-- 5 CONTACT -->
-    <div class="tabPage">
+    <section>
       <h2>Contact Us</h2>
       <p>contact@streamverse.gg</p>
-    </div>
+  </section>
 
-  </div>
-</div>
+
 
 <script>
 
@@ -619,61 +464,11 @@ setInterval(()=>{
   }
 },60000);
 
-/* ================= AUTO RESIZE TAB ENGINE ================= */
-
-function openTab(index){
-
-const slider = document.getElementById("tabSlider");
-const pages = document.querySelectorAll(".tabPage");
-const buttons = document.querySelectorAll(".tabBtn");
-
-/* Laske tab leveys automaattisesti */
-const percent = 100 / pages.length;
-
-/* Siirrä slider */
-slider.style.transform =
-"translateX(-" + (index * percent) + "%)";
-
-/* Aktivoi napit */
-buttons.forEach(btn=>btn.classList.remove("active"));
-
-if(buttons[index]){
-buttons[index].classList.add("active");
-}
-
-}
-
-/* ================= OPTIONAL: AUTO SET SLIDER WIDTH ================= */
-
-function initTabEngine(){
-
-const slider = document.getElementById("tabSlider");
-const pages = document.querySelectorAll(".tabPage");
-
-/* Aseta slider leveys automaattisesti */
-slider.style.width = (pages.length * 100) + "%";
-
-}
-
-/* Käynnistä sivun latauksessa */
-window.addEventListener("load", initTabEngine);
-
- /* mobile */ 
-function toggleMenu(){
-
-const nav = document.getElementById("mobileNav");
-
-if(nav.style.display==="flex"){
-nav.style.display="none";
-}else{
-nav.style.display="flex";
-}
-
-}
   
 </script>
 </body>
 </html>
+
 
 
 
