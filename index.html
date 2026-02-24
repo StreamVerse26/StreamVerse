@@ -146,6 +146,8 @@ border-radius:20px;
 margin-top:40px;
 }
 
+/* ================= NAVIGATION TABS ================= */
+
 .tabs{
 margin-top:30px;
 display:flex;
@@ -175,54 +177,37 @@ background:#28c76f;
 box-shadow:0 0 20px rgba(40,199,111,.5);
 }
 
-.tabContent{
-display:none;
-margin-top:40px;
-animation:fadeIn .4s ease;
-}
-
-.tabContent.active{
-display:block;
-}
+/* ================= TAB CONTAINER ================= */
 
 .tabWrapper{
-overflow:hidden;
 width:100%;
+overflow:hidden;
 margin-top:50px;
 }
 
 .tabSlider{
 display:flex;
-width:400%;
-transition:transform 0.5s ease-in-out;
+transition:0.5s ease;
 }
 
 .tabPage{
 width:100%;
 flex-shrink:0;
 padding:20px;
-}
-
-.tabWrapper{
-width:100%;
-overflow:hidden;
-}
-
-.tabSlider{
-display:flex;
-width:400%;
-transition:0.5s ease;
-}
-
-.tabPage{
-width:25%;
-padding:20px;
 box-sizing:border-box;
 }
 
+/* ================= ANIMATION ================= */
+
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(10px);}
-to{opacity:1; transform:translateY(0);}
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* ===== MOBILE ===== */
@@ -268,7 +253,7 @@ font-size:2.2rem;
 }
 
 }
-
+/* mobile */
 .mobileMenu{
 display:none;
 position:absolute;
@@ -423,12 +408,14 @@ line-height:1.6;
   <button onclick="openTab(2)">Streamers</button>
   <button onclick="openTab(3)">Contact</button>
 </div>
-      <!-- idk-->
+      <!-- tabit-->
 <div class="tabs">
   <button class="tabBtn active" onclick="openTab(0)">Home</button>
-  <button class="tabBtn" onclick="openTab(1)">About Us</button>
-  <button class="tabBtn" onclick="openTab(2)">Streamers</button>
-  <button class="tabBtn" onclick="openTab(3)">Contact Us</button>
+  <button class="tabBtn" onclick="openTab(1)">News</button>
+  <button class="tabBtn" onclick="openTab(2)">Creator of the Month</button>
+  <button class="tabBtn" onclick="openTab(3)">About Us</button>
+  <button class="tabBtn" onclick="openTab(4)">Streamers</button>
+  <button class="tabBtn" onclick="openTab(5)">Contact Us</button>
 </div>
 
 <div class="tabWrapper">
@@ -438,7 +425,15 @@ line-height:1.6;
     <div class="tabPage">
       <div id="streamBox"></div>
     </div>
-
+    
+<!-- CREATOR OF THE MONTH -->
+<div class="tabPage">
+  <h2>🏆 Creator of the Month</h2>
+  <p style="font-size:2rem; opacity:.7; margin-top:40px;">
+    TBA
+  </p>
+</div>
+    
     <!-- ABOUT -->
 <div class="aboutCard">
 
@@ -625,8 +620,11 @@ setInterval(()=>{
 
 function openTab(index){
 
+const pages = document.querySelectorAll(".tabPage");
+const percent = 100 / pages.length;
+
 document.getElementById("tabSlider")
-.style.transform = "translateX(-"+(index*25)+"%)";
+.style.transform = "translateX(-"+(index*percent)+"%)";
 
 document.querySelectorAll(".tabBtn")
 .forEach(btn=>btn.classList.remove("active"));
@@ -651,6 +649,7 @@ nav.style.display="flex";
 </script>
 </body>
 </html>
+
 
 
 
