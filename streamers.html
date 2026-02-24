@@ -174,7 +174,6 @@ const userRes = await fetch(
 "/api/twitchUser?login="+channel+"&token="+token
 );
 
-const userData = await userRes.json();
 
 const userData = await userRes.json();
 if(!userData.data.length) continue;
@@ -203,6 +202,7 @@ window.onload = loadData;
   
 </body>
 </html>
+
 
 
 
