@@ -624,7 +624,7 @@ const slider = document.getElementById("tabSlider");
 const pages = document.querySelectorAll(".tabPage");
 
 slider.style.transform =
-"translateX(-" + (index * 100) + "%)";
+"translateX(-" + (index * (100 / pages.length)) + "%)";
 
 document.querySelectorAll(".tabBtn")
 .forEach(btn=>btn.classList.remove("active"));
@@ -649,6 +649,7 @@ nav.style.display="flex";
 </script>
 </body>
 </html>
+
 
 
 
