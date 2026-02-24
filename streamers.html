@@ -160,8 +160,6 @@ if(!membersDiv) return;
 
 membersDiv.innerHTML="";
 
-/* Twitch public profile images (demo safe) */
-
 for(const channel of channels){
 
 const card = document.createElement("a");
@@ -169,10 +167,10 @@ card.className="card";
 card.href="https://twitch.tv/"+channel;
 card.target="_blank";
 
-card.innerHTML=`
-<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/${channel}-profile_image-70x70.png">
+/* Käytetään Twitch CDN profile kuvaa (yleinen fallback) */
+card.innerHTML = `
+<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
 <h3>${channel}</h3>
-<div class="viewer">Twitch channel</div>
 `;
 
 membersDiv.appendChild(card);
@@ -181,12 +179,13 @@ membersDiv.appendChild(card);
 
 }
 
-window.onload=loadData;
+window.onload = loadData;
 
 </script>
   
 </body>
 </html>
+
 
 
 
