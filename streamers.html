@@ -125,8 +125,8 @@ const card = document.createElement("div");
 card.className = "card";
 
 card.innerHTML = `
-<img src="${user.profile_image_url}">
-<h3>${user.display_name}</h3>
+<img src="${user?.profile_image_url || 'https://placehold.co/110x110'}">
+<h3>${user?.display_name || channel}</h3>
 <div class="viewer">OFFLINE</div>
 `;
 
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
