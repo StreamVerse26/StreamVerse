@@ -105,24 +105,19 @@ width:auto;
 <script>
 
 console.log("STREAMERS JS LOADED");
-console.log("LOAD DATA START");
-  
+
 const channels = [
 "G3splitter",
 "Koeda666",
 "RdcWaitingRoom_"
 ];
 
-async function getToken(){
-const res = await fetch("/api/token");
-const data = await res.json();
-return data.access_token;
-}
-
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
-membersDiv.innerHTML="";
+if(!membersDiv) return;
+
+membersDiv.innerHTML = "";
 
 const tokenRes = await fetch("/api/token");
 const tokenData = await tokenRes.json();
@@ -137,17 +132,14 @@ const userRes = await fetch(
 
 const userData = await userRes.json();
 
-console.log("USER RESPONSE", userData);
-console.log("CHANNEL CHECK", channel);
-
 if(!userData?.data?.[0]) continue;
 
 const user = userData.data[0];
 
 const card = document.createElement("a");
-card.className="card";
-card.href="https://twitch.tv/"+channel;
-card.target="_blank";
+card.className = "card";
+card.href = "https://twitch.tv/" + channel;
+card.target = "_blank";
 
 card.innerHTML = `
 <img src="${user.profile_image_url}">
@@ -166,6 +158,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
