@@ -73,31 +73,27 @@ border-radius:50%;
 border:3px solid #ff4040;
 }
 
-.live-badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-    background: #ff0000;
-    color: white;
-    animation: pulseLive 1.5s infinite;
+/* Live card glow */
+.card.live {
+    box-shadow: 0 0 20px rgba(0, 255, 120, 0.5);
+    border: 1px solid rgba(0, 255, 120, 0.6);
+    transition: 0.3s ease;
 }
 
-@keyframes pulseLive {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.6;
-        transform: scale(1.1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* Profile ring */
+.profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    transition: 0.3s ease;
+    object-fit: cover;
 }
+
+/* Green ring when live */
+.card.live .profile-img {
+    border: 4px solid #00ff7a;
+    box-shadow: 0 0 15px rgba(0, 255, 120, 0.8);
+}    
   
 .logo{
 height:70px;
@@ -155,6 +151,7 @@ for(const channel of channels){
 const card = document.createElement("div");
 card.className = "card";
 
+    
 try{
 
 const userRes = await fetch(
@@ -172,6 +169,10 @@ const profileImage = user?.profile_image_url
   ? `https://static-cdn.jtvnw.net/${user.profile_image_url}`
   : "https://placehold.co/110x110";
 
+if(stream){
+    card.classList.add("live");
+}
+    
 card.innerHTML = `
 <img src="${profileImage}">
 <h3>${channel}</h3>
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
