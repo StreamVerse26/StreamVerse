@@ -104,7 +104,7 @@ width:auto;
 
 <script>
 
-console.log("STREAMERS JS LOADED");
+console.log("STREAMERS VISUAL MODE");
 
 const channels = [
 "G3splitter",
@@ -112,38 +112,22 @@ const channels = [
 "RdcWaitingRoom_"
 ];
 
-async function loadData(){
+function loadData(){
 
 const membersDiv = document.getElementById("members");
 if(!membersDiv) return;
 
 membersDiv.innerHTML = "";
 
-const tokenRes = await fetch("/api/token");
-const tokenData = await tokenRes.json();
-
-const token = tokenData.access_token;
-
 for(const channel of channels){
 
-const userRes = await fetch(
-"/api/twitchUser?login="+channel+"&token="+token
-);
-
-const userData = await userRes.json();
-
-if(!userData?.data?.[0]) continue;
-
-const user = userData.data[0];
-
-const card = document.createElement("a");
+const card = document.createElement("div");
 card.className = "card";
-card.href = "https://twitch.tv/" + channel;
-card.target = "_blank";
 
 card.innerHTML = `
-<img src="${user.profile_image_url}">
-<h3>${user.display_name}</h3>
+<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_70x70.png">
+<h3>${channel}</h3>
+<div class="viewer">OFFLINE</div>
 `;
 
 membersDiv.appendChild(card);
@@ -158,6 +142,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
