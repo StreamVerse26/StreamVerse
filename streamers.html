@@ -137,6 +137,9 @@ const userRes = await fetch(
 
 const userData = await userRes.json();
 
+console.log("USER RESPONSE", userData);
+console.log("CHANNEL CHECK", channel);
+
 if(!userData?.data?.[0]) continue;
 
 const user = userData.data[0];
@@ -163,6 +166,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
