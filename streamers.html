@@ -122,11 +122,12 @@ return data.access_token;
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
-if(!membersDiv) return;
-
 membersDiv.innerHTML="";
 
-const token = await getToken();
+const tokenRes = await fetch("/api/token");
+const tokenData = await tokenRes.json();
+
+const token = tokenData.access_token;
 
 for(const channel of channels){
 
@@ -136,7 +137,7 @@ const userRes = await fetch(
 
 const userData = await userRes.json();
 
-if(!userData?.data?.length) continue;
+if(!userData?.data?.[0]) continue;
 
 const user = userData.data[0];
 
@@ -162,6 +163,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
