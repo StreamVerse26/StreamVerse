@@ -125,11 +125,9 @@ const card = document.createElement("div");
 card.className = "card";
 
 card.innerHTML = `
-<img src="${user.user?.data?.[0]?.profile_image_url || 'https://placehold.co/110x110'}">
-<h3>${user.user?.data?.[0]?.display_name || channel}</h3>
-<div class="viewer">
-${user.live?.data?.length > 0 ? "🔴 LIVE" : "OFFLINE"}
-</div>
+<img src="${user.profile_image_url}">
+<h3>${user.display_name}</h3>
+<div class="viewer">OFFLINE</div>
 `;
 
 membersDiv.appendChild(card);
@@ -144,6 +142,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
