@@ -104,8 +104,6 @@ width:auto;
 
 <script>
 
-console.log("STREAMERS VISUAL MODE");
-
 const channels = [
 "G3splitter",
 "Koeda666",
@@ -125,8 +123,8 @@ const card = document.createElement("div");
 card.className = "card";
 
 card.innerHTML = `
-<img src="${user?.profile_image_url || 'https://placehold.co/110x110'}">
-<h3>${user?.display_name || channel}</h3>
+<img src="https://placehold.co/110x110">
+<h3>${channel}</h3>
 <div class="viewer">OFFLINE</div>
 `;
 
@@ -142,6 +140,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
