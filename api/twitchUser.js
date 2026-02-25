@@ -6,7 +6,8 @@ if(!token){
 return res.status(400).json({error:"Missing token"});
 }
 
-const response = await fetch(
+/* Hae user info */
+const userResponse = await fetch(
 "https://api.twitch.tv/helix/users?login="+login,
 {
 headers:{
@@ -16,8 +17,25 @@ headers:{
 }
 );
 
-const data = await response.json();
+const userData = await userResponse.json();
 
-res.json(data);
+/* Hae live status */
+const liveResponse = await fetch(
+"https://api.twitch.tv/helix/streams?user_login="+login,
+{
+headers:{
+"Authorization":"Bearer "+token,
+"Client-Id": process.env.CLIENT_ID
+}
+}
+);
+
+const liveData = await liveResponse.json();
+
+/* Palauta molemmat */
+res.json({
+user: userData,
+live: liveData
+});
 
 }
