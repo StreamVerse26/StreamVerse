@@ -142,8 +142,12 @@ const stream = data.live.data?.[0];
 
 console.log(user?.profile_image_url); // ← lisää tämä
   
+const profileImage = user?.profile_image_url 
+  ? `https://static-cdn.jtvnw.net/${user.profile_image_url}`
+  : "https://placehold.co/110x110";
+
 card.innerHTML = `
-<img src="${user?.profile_image_url || 'https://placehold.co/110x110'}">
+<img src="${profileImage}">
 <h3>${channel}</h3>
 <div class="viewer">
 ${stream ? "🟢 LIVE" : "⚫ OFFLINE"}
@@ -168,6 +172,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
