@@ -150,7 +150,12 @@ card.innerHTML = `
 <img src="${profileImage}">
 <h3>${channel}</h3>
 <div class="viewer">
-${stream ? "🟢 LIVE" : "⚫ OFFLINE"}
+${stream ? `
+🟢 LIVE  
+👁 ${stream.viewer_count} viewers  
+🎮 ${stream.game_name || ""}  
+📺 ${stream.title || ""}
+` : "⚫ OFFLINE"}
 </div>
 `;
 
@@ -172,6 +177,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
