@@ -140,6 +140,8 @@ const data = await userRes.json();
 const user = data.user.data?.[0];
 const stream = data.live.data?.[0];
 
+console.log(user?.profile_image_url); // ← lisää tämä
+  
 card.innerHTML = `
 <img src="${user?.profile_image_url || 'https://placehold.co/110x110'}">
 <h3>${channel}</h3>
@@ -166,6 +168,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
