@@ -110,26 +110,52 @@ const channels = [
 "RdcWaitingRoom_"
 ];
 
-function loadData(){
+async function getToken(){
+const res = await fetch("/api/token");
+return await res.json();
+}
+
+async function loadData(){
 
 const membersDiv = document.getElementById("members");
 if(!membersDiv) return;
 
 membersDiv.innerHTML = "";
 
+const tokenData = await getToken();
+
 for(const channel of channels){
 
 const card = document.createElement("div");
 card.className = "card";
 
+try{
+
+const userRes = await fetch(
+`/api/twitchuser?login=${channel}&token=${tokenData.access_token}`
+);
+
+const data = await userRes.json();
+
+const user = data.user.data?.[0];
+const stream = data.live.data?.[0];
+
 card.innerHTML = `
-<img src="https://placehold.co/110x110">
+<img src="${user?.profile_image_url || 'https://placehold.co/110x110'}">
 <h3>${channel}</h3>
-<div class="viewer">OFFLINE</div>
+<div class="viewer">
+${stream ? "🟢 LIVE" : "⚫ OFFLINE"}
+</div>
 `;
 
-membersDiv.appendChild(card);
+}catch(e){
+card.innerHTML = `
+<h3>${channel}</h3>
+<div>Error loading data</div>
+`;
+}
 
+membersDiv.appendChild(card);
 }
 
 }
@@ -140,6 +166,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
