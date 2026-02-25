@@ -138,8 +138,35 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </script>
 
+<script>
+
+async function testApi(){
+
+const tokenRes = await fetch("/api/token");
+const tokenData = await tokenRes.json();
+
+const token = tokenData.access_token;
+
+console.log("TOKEN:", token);
+
+const testChannel = "G3splitter";
+
+const userRes = await fetch(
+"/api/twitchUser?login="+testChannel+"&token="+token
+);
+
+const userData = await userRes.json();
+
+console.log("USER DATA:", userData);
+
+}
+
+</script>
+
+<button onclick="testApi()">TEST API</button>
 </body>
 </html>
+
 
 
 
