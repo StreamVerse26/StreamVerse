@@ -73,6 +73,32 @@ border-radius:50%;
 border:3px solid #ff4040;
 }
 
+.live-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #ff0000;
+    color: white;
+    animation: pulseLive 1.5s infinite;
+}
+
+@keyframes pulseLive {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+  
 .logo{
 height:70px;
 width:auto;
@@ -177,6 +203,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
