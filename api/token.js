@@ -1,11 +1,6 @@
-let cachedToken = null;
-let expiresAt = 0;
-
 export default async function handler(req,res){
 
-if(cachedToken && Date.now() < expiresAt){
-return res.json(cachedToken);
-}
+try{
 
 const response = await fetch(
 "https://id.twitch.tv/oauth2/token",
@@ -23,9 +18,10 @@ grant_type:"client_credentials"
 
 const data = await response.json();
 
-cachedToken = data;
-expiresAt = Date.now() + (data.expires_in * 1000);
+res.status(200).json(data);
 
-res.json(data);
+}catch(err){
+res.status(500).json({error:err.message});
+}
 
 }
