@@ -154,8 +154,10 @@ const tokenData = await getToken();
 
 for(const channel of channels){
 
-const card = document.createElement("div");
+const card = document.createElement("a");
 card.className = "card";
+card.href = `https://twitch.tv/${channel}`;
+card.target = "_blank";
 
     
 try{
@@ -210,6 +212,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
