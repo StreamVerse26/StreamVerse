@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>StreamVerse</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -152,6 +154,76 @@ transform:translateY(-3px);
 footer{
 margin-top:auto;
 }    
+
+/* ========================= */
+/* MOBILE RESPONSIVE DESIGN */
+/* ========================= */
+
+@media (max-width: 768px){
+
+/* Navbar */
+.navbar{
+flex-wrap:wrap;
+gap:10px;
+padding:15px;
+}
+
+.navbar a{
+padding:8px 14px;
+font-size:0.9rem;
+}
+
+/* Hero */
+.hero h1{
+font-size:2.2rem;
+}
+
+.hero-box{
+padding:35px 25px;
+margin:20px;
+}
+
+.heroText{
+font-size:1rem;
+}
+
+/* Join button */
+.joinBox{
+font-size:1.2rem;
+padding:18px 35px;
+}
+
+/* About cards */
+.aboutCard{
+padding:25px;
+}
+
+/* Stats grid */
+.aboutStats{
+grid-template-columns:1fr;
+}
+
+/* Streamer cards */
+.members{
+grid-template-columns:1fr;
+padding:20px;
+}
+
+.card{
+padding:25px;
+}
+
+/* Footer */
+.footer{
+padding:40px 15px;
+}
+
+.socials a{
+padding:8px 14px;
+font-size:0.9rem;
+}
+
+}    
     
 </style>
 
@@ -282,6 +354,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
 
 
