@@ -97,7 +97,43 @@ transform:translateY(-3px);
 footer{
 margin-top:auto;
 }
+/* 3 boxes */
+.aboutStats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:40px;
+}
 
+.aboutStats div{
+background:linear-gradient(145deg,#1a1a2f,#121221);
+padding:30px;
+border-radius:25px;
+
+box-shadow:
+0 0 40px rgba(255,0,150,.15),
+0 0 80px rgba(255,0,150,.08);
+
+transition:.3s ease;
+}
+
+.aboutStats div:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 0 60px rgba(255,0,150,.35),
+0 0 120px rgba(255,0,150,.2);
+}
+
+.aboutStats h3{
+color:#ff0096;
+margin-bottom:10px;
+}
+
+.aboutStats p{
+opacity:.8;
+line-height:1.5;
+}
+  
 </style>
 
 </head>
@@ -120,37 +156,37 @@ margin-top:auto;
 <div class="aboutCard">
 <h2 class="aboutTitle">About StreamVerse</h2>
 <p class="aboutText">
-Many talented streamers struggle to reach their desired audience on their own. Streamer Hub is a modern content creator community platform that connects streamers, viewers, and growth opportunities into one unified ecosystem.
-Our goal is to help both new and experienced content creators find their audience, increase their visibility, and build long-lasting communities around their content.
-We are more than just a streamer listing platform — we are a growing community that supports content creators through collaboration, events, and visibility opportunities.
--Community, Visibility, Growth.
+Monet lahjakkaat striimaajat kamppailevat tavoittaakseen haluamansa yleisön omin avuin. Creators Hype Hub on moderni sisällöntuottajien yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia.
+Tavoitteenamme on auttaa sekä uusia että kokeneita sisällöntuottajia löytämään yleisönsä, lisäämään näkyvyyttään ja rakentamaan pitkäkestoisia yhteisöjä sisältönsä ympärille.
+Emme ole pelkkä striimaajalistausalusta — olemme kasvava yhteisö, joka tukee sisällöntuottajia yhteistyön, tapahtumien ja näkyvyysmahdollisuuksien kautta.
+-Yhteisö, Näkyvyys & Kasvu.
 </p>
   
 <p class="aboutText">
-Our goal is to continuously develop and provide more features in the future, including:
+Tavoitteemme on jatkuvasti kehittää ja tarjota enemmän ominaisuuksia tulevaisuudessa mm:
 </p>
 
 <div class="aboutBullets">
-<p>✨ Creator of the Month – Highlighting active and talented content creators</p>
-<p>📰 News and Updates – Stay informed about events and platform updates</p>
-<p>🏆 Tournaments and Events – Community competitions and activities</p>
-<p>🤝 Potential Sponsorship and Partnership Opportunities</p>
+<p>✨ Creator of the Month – Kuukausittain vaihtuva striimaaja</p>
+<p>📰 News and Updates – Pysy ajantasalla tapahtumista ja mitä alustalla tapahtuu. </p>
+<p>🏆 Tournaments and Events – Yhteisö kilpailuja ja aktiviteettejä sekä tapahtumia.</p>
+<p>🤝 Potentiaaliset yhteistyöt ja sponsorit</p>
 </div>
 
 <div class="aboutStats">
 <div>
 <h3>Community</h3>
-<p>Growing every day</p>
+<p>Kasvamme jatkuvast uusien sisällöntuottajien ja seuraajien myötä, jotka liittyvät mukaan.</p>
 </div>
 
 <div>
 <h3>Creators</h3>
-<p>Supported worldwide</p>
+<p>Tuemme sisällöntuottajien sisältöä maailmanlaajuisesti, jotta kaikilla on mahdollisuus kasvaa ja onnistua.</p>
 </div>
 
 <div>
 <h3>Live Content</h3>
-<p>Real-time discovery</p>
+<p>Reaaliaikainen livestriimaus kirjasto, josta löydät aktiiviset Hypeläiset</p>
 </div>
   
 </div>
@@ -188,6 +224,7 @@ contact@streamverse.gg
   
 </body>
 </html>
+
 
 
 
